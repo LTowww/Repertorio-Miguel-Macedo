@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Repertório Musical - Miguel Macedo</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: #0e0e0e;
+      color: #f0f0f0;
+      line-height: 1.6;
+    }
+
+    a {
+      color: #1db954;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    header {
+      text-align: center;
+      padding: 60px 20px;
+      background: linear-gradient(180deg, #111, #0e0e0e);
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      color: #aaa;
+      font-size: 1.1rem;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    section {
+      margin-bottom: 60px;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      border-left: 5px solid #1db954;
+      padding-left: 10px;
+    }
+
+    /* ======== FORM LOGIN ======== */
+    #login-area {
+      background: #121212;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    #login-area input {
+      padding: 10px;
+      border-radius: 6px;
+      border: none;
+      background: #1f1f1f;
+      color: #fff;
+      margin-right: 10px;
+    }
+
+    #login-area button {
+      background: #1db954;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    #login-area button:hover {
+      background: #17a84a;
+    }
+
+    /* ======== FORMULÁRIO DE UPLOAD ======== */
+    #add-song-form {
+      background: #121212;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 40px;
+    }
+
+    #add-song-form input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border-radius: 6px;
+      border: none;
+      background: #1f1f1f;
+      color: #fff;
+    }
+
+    #add-song-form button {
+      background: #1db954;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+      margin-right: 8px;
+    }
+
+    #add-song-form button:hover {
+      background: #17a84a;
+    }
+
+    #cancel-edit {
+      background: #555;
+      color: #fff;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    /* ======== REPERTÓRIO ======== */
+    #search-bar {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      margin-bottom: 20px;
+    }
+
+    .song-list {
+      display: grid;
+      gap: 15px;
+    }
+
+    .song {
+      background: #1a1a1a;
+      padding: 15px;
+      border-radius: 10px;
+      transition: 0.3s;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .song:hover {
+      transform: translateY(-3px);
+      background: #222;
+    }
+
+    .song h3 {
+      color: #1db954;
+      font-size: 1.2rem;
+      margin-bottom: 6px;
+    }
+
+    .song p {
+      color: #ccc;
+      font-size: 0.95rem;
+      margin: 2px 0;
+    }
+
+    .song-info {
+      flex: 1;
+    }
+
+    .song-actions {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+    }
+
+    .song-actions button {
+      background: transparent;
+      border: 1px solid #333;
+      color: #ddd;
+      padding: 8px 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .song-actions button:hover {
+      border-color: #1db954;
+      color: #1db954;
+    }
+
+    .edit-btn {
+      border-color: #1db954;
+      color: #1db954;
+      background: rgba(29,185,84,0.06);
+    }
+
+    .delete-btn {
+      border-color: #ff4d4d;
+      color: #ff4d4d;
+      background: rgba(255,77,77,0.04);
+    }
+
+    /* ======== SOBRE ======== */
+    #sobre p {
+      color: #ccc;
+      font-size: 1rem;
+      margin-top: 10px;
+    }
+
+    /* ======== CONTATO ======== */
+    .social-links a {
+      margin-right: 15px;
+      font-size: 1.2rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      background-color: #111;
+      color: #777;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2rem;
+      }
+
+      .song {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .song-actions {
+        justify-content: flex-end;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Miguel Macedo</h1>
+    <p>Meu repertório musical — sons que fazem parte da minha jornada</p>
+  </header>
+
+  <main>
+    <!-- LOGIN -->
+    <section id="login-area">
+      <h2>Área restrita</h2>
+      <p>Digite a senha para gerenciar seu repertório:</p>
+      <input type="password" id="password-input" placeholder="Senha">
+      <button id="login-btn">Entrar</button>
+      <p id="login-msg" style="color:red; margin-top:10px;"></p>
+    </section>
+
+    <!-- FORMULÁRIO DE UPLOAD -->
+    <section id="upload" style="display:none;">
+      <h2 id="form-title">Adicionar música ao repertório</h2>
+      <form id="add-song-form">
+        <input type="text" id="title" name="title" placeholder="Nome da música" required>
+        <input type="text" id="artist" name="artist" placeholder="Artista" required>
+        <input type="text" id="genre" name="genre" placeholder="Gênero (opcional)">
+        <input type="url" id="cifra" name="cifra" placeholder="Link da cifra (opcional)">
+        <input type="url" id="audio" name="audio" placeholder="Link para ouvir (opcional)">
+        <div style="margin-top:10px;">
+          <button type="submit" id="submit-btn">Adicionar</button>
+          <button type="button" id="cancel-edit" style="display:none;">Cancelar</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- REPERTÓRIO -->
+    <section id="repertorio">
+      <h2>Repertório</h2>
+      <input type="text" id="search-bar" placeholder="Pesquisar música ou artista...">
+      <div class="song-list" id="song-list"></div>
+    </section>
+
+    <!-- SOBRE -->
+    <section id="sobre">
+      <h2>Sobre mim</h2>
+      <p>Sou Miguel Macedo, músico apaixonado por explorar sons e estilos diferentes. Toco violão, guitarra e estou sempre em busca de novas inspirações.  
+      Este site é o meu arquivo musical — um espaço onde guardo e compartilho o que me move.</p>
+    </section>
+
+    <!-- CONTATO -->
+    <section id="contato">
+      <h2>Contato</h2>
+      <div class="social-links">
+        <a href="https://instagram.com/" target="_blank">Instagram</a>
+        <a href="https://youtube.com/" target="_blank">YouTube</a>
+        <a href="mailto:contato@miguelmacedo.com">E-mail</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2025 Miguel Macedo — Todos os direitos reservados.
+  </footer>
+
+  <script>
+    const PASSWORD = "senhamiguel"; // 🔒 ALTERE AQUI SUA SENHA PRIVADA
+
+    const loginArea = document.getElementById("login-area");
+    const uploadSection = document.getElementById("upload");
+    const passwordInput = document.getElementById("password-input");
+    const loginBtn = document.getElementById("login-btn");
+    const loginMsg = document.getElementById("login-msg");
+
+    const form = document.getElementById("add-song-form");
+    const songList = document.getElementById("song-list");
+    const searchBar = document.getElementById("search-bar");
+    const submitBtn = document.getElementById("submit-btn");
+    const cancelEditBtn = document.getElementById("cancel-edit");
+    const formTitle = document.getElementById("form-title");
+
+    let songs = JSON.parse(localStorage.getItem("songs")) || [];
+    let editingIndex = -1; // -1 indica modo "adicionar"; >=0 indica índice sendo editado
+
+    function saveSongs() {
+      localStorage.setItem("songs", JSON.stringify(songs));
+    }
+
+    function renderSongs(filter = "") {
+      songList.innerHTML = "";
+      const filtered = songs.filter(song =>
+        song.title.toLowerCase().includes(filter) ||
+        song.artist.toLowerCase().includes(filter)
+      );
+
+      if (filtered.length === 0) {
+        songList.innerHTML = "<p style='color:#777;'>Nenhuma música encontrada.</p>";
+        return;
+      }
+
+      filtered.forEach((song, index) => {
+        const div = document.createElement("div");
+        div.classList.add("song");
+
+        const info = document.createElement("div");
+        info.classList.add("song-info");
+        info.innerHTML = `
+          <h3>${escapeHtml(song.title)}</h3>
+          <p><strong>Artista:</strong> ${escapeHtml(song.artist)}</p>
+          ${song.genre ? `<p><strong>Gênero:</strong> ${escapeHtml(song.genre)}</p>` : ""}
+          <p>
+            ${song.cifra ? `<a href="${escapeAttr(song.cifra)}" target="_blank">Ver Cifra</a>` : ""}
+            ${song.audio ? `${song.cifra ? " | " : ""}<a href="${escapeAttr(song.audio)}" target="_blank">Ouvir</a>` : ""}
+          </p>
+        `;
+
+        const actions = document.createElement("div");
+        actions.classList.add("song-actions");
+        actions.innerHTML = `
+          <button class="edit-btn" data-index="${index}">Editar</button>
+          <button class="delete-btn" data-index="${index}">Excluir</button>
+        `;
+
+        div.appendChild(info);
+        div.appendChild(actions);
+        songList.appendChild(div);
+      });
+    }
+
+    // escape simples para evitar injeção de HTML ao renderizar dados do usuário
+    function escapeHtml(str) {
+      if (!str) return "";
+      return String(str)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#39;");
+    }
+
+    // escape para atributos href
+    function escapeAttr(url) {
+      if (!url) return "";
+      return String(url).replace(/"/g, "%22");
+    }
+
+    // Login simples com senha local
+    loginBtn.addEventListener("click", () => {
+      if (passwordInput.value === PASSWORD) {
+        uploadSection.style.display = "block";
+        loginArea.style.display = "none";
+        loginMsg.textContent = "";
+      } else {
+        loginMsg.textContent = "Senha incorreta!";
+      }
+    });
+
+    // Delegação de eventos para editar/excluir
+    songList.addEventListener("click", (e) => {
+      const target = e.target;
+      if (target.matches(".edit-btn")) {
+        const idx = Number(target.dataset.index);
+        startEdit(idx);
+      } else if (target.matches(".delete-btn")) {
+        const idx = Number(target.dataset.index);
+        deleteSong(idx);
+      }
+    });
+
+    function startEdit(index) {
+      const song = songs[index];
+      if (!song) return;
+      // mostrar seção de upload se estiver oculta
+      uploadSection.style.display = "block";
+      // preencher formulário
+      form.title.value = song.title;
+      form.artist.value = song.artist;
+      form.genre.value = song.genre || "";
+      form.cifra.value = song.cifra || "";
+      form.audio.value = song.audio || "";
+      editingIndex = index;
+      submitBtn.textContent = "Salvar Alterações";
+      cancelEditBtn.style.display = "inline-block";
+      formTitle.textContent = "Editar música";
+      // rolar para o formulário (útil se lista longa)
+      form.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+
+    cancelEditBtn.addEventListener("click", () => {
+      resetFormToAddMode();
+    });
+
+    function resetFormToAddMode() {
+      editingIndex = -1;
+      form.reset();
+      submitBtn.textContent = "Adicionar";
+      cancelEditBtn.style.display = "none";
+      formTitle.textContent = "Adicionar música ao repertório";
+    }
+
+    function deleteSong(index) {
+      const song = songs[index];
+      if (!song) return;
+      const ok = confirm(`Deseja realmente excluir "${song.title}" — ${song.artist}?`);
+      if (!ok) return;
+      songs.splice(index, 1);
+      saveSongs();
+      renderSongs(searchBar.value.toLowerCase());
+      // se estivermos editando essa música, cancelar edição
+      if (editingIndex === index) resetFormToAddMode();
+      // ajustar editingIndex se necessário (quando removemos itens antes do índice)
+      if (editingIndex > index) editingIndex -= 1;
+    }
+
+    // Adicionar/Salvar música
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const newSong = {
+        title: form.title.value.trim(),
+        artist: form.artist.value.trim(),
+        genre: form.genre.value.trim(),
+        cifra: form.cifra.value.trim(),
+        audio: form.audio.value.trim(),
+      };
+
+      if (!newSong.title || !newSong.artist) {
+        alert("Preencha pelo menos 'Nome da música' e 'Artista'.");
+        return;
+      }
+
+      if (editingIndex > -1) {
+        // salvar alterações
+        songs[editingIndex] = newSong;
+        saveSongs();
+        resetFormToAddMode();
+      } else {
+        // adicionar nova
+        songs.push(newSong);
+        saveSongs();
+        form.reset();
+      }
+
+      renderSongs(searchBar.value.toLowerCase());
+    });
+
+    // Filtro de busca
+    searchBar.addEventListener("input", (e) => {
+      renderSongs(e.target.value.toLowerCase());
+    });
+
+    // render inicial
+    renderSongs();
+
+    // Caso queira disponibilizar uma função pública para testes no console:
+    window._repertorio = {
+      songs,
+      renderSongs,
+      saveSongs
+    };
+  </script>
+</body>
+</html>
