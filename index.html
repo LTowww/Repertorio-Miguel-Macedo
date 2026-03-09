@@ -62,7 +62,7 @@
       padding-left: 10px;
     }
 
-    /* ======== FORM LOGIN ======== */
+    /* Formulário de Login */
     #login-area {
       background: #121212;
       padding: 20px;
@@ -95,7 +95,7 @@
       background: #17a84a;
     }
 
-    /* ======== FORMULÁRIO DE UPLOAD ======== */
+    /* Upload */
     #add-song-form {
       background: #121212;
       padding: 20px;
@@ -138,7 +138,7 @@
       cursor: pointer;
     }
 
-    /* ======== REPERTÓRIO ======== */
+    /* Repertório */
     #search-bar {
       width: 100%;
       padding: 10px;
@@ -218,14 +218,14 @@
       background: rgba(255,77,77,0.04);
     }
 
-    /* ======== SOBRE ======== */
+    /* Sobre */
     #sobre p {
       color: #ccc;
       font-size: 1rem;
       margin-top: 10px;
     }
 
-    /* ======== CONTATO ======== */
+    /* Contato */
     .social-links a {
       margin-right: 15px;
       font-size: 1.2rem;
@@ -320,7 +320,7 @@
   </footer>
 
   <script>
-    const PASSWORD = "senhamiguel"; // 🔒 ALTERE AQUI SUA SENHA PRIVADA
+    const PASSWORD = "senhamiguel"; //ALTERAR SENHA
 
     const loginArea = document.getElementById("login-area");
     const uploadSection = document.getElementById("upload");
@@ -336,7 +336,7 @@
     const formTitle = document.getElementById("form-title");
 
     let songs = JSON.parse(localStorage.getItem("songs")) || [];
-    let editingIndex = -1; // -1 indica modo "adicionar"; >=0 indica índice sendo editado
+    let editingIndex = -1;
 
     function saveSongs() {
       localStorage.setItem("songs", JSON.stringify(songs));
@@ -383,7 +383,7 @@
       });
     }
 
-    // escape simples para evitar injeção de HTML ao renderizar dados do usuário
+    
     function escapeHtml(str) {
       if (!str) return "";
       return String(str)
@@ -394,13 +394,13 @@
         .replaceAll("'", "&#39;");
     }
 
-    // escape para atributos href
+   
     function escapeAttr(url) {
       if (!url) return "";
       return String(url).replace(/"/g, "%22");
     }
 
-    // Login simples com senha local
+    // Login simples
     loginBtn.addEventListener("click", () => {
       if (passwordInput.value === PASSWORD) {
         uploadSection.style.display = "block";
@@ -411,7 +411,7 @@
       }
     });
 
-    // Delegação de eventos para editar/excluir
+    
     songList.addEventListener("click", (e) => {
       const target = e.target;
       if (target.matches(".edit-btn")) {
@@ -426,9 +426,9 @@
     function startEdit(index) {
       const song = songs[index];
       if (!song) return;
-      // mostrar seção de upload se estiver oculta
+      
       uploadSection.style.display = "block";
-      // preencher formulário
+     
       form.title.value = song.title;
       form.artist.value = song.artist;
       form.genre.value = song.genre || "";
@@ -438,7 +438,7 @@
       submitBtn.textContent = "Salvar Alterações";
       cancelEditBtn.style.display = "inline-block";
       formTitle.textContent = "Editar música";
-      // rolar para o formulário (útil se lista longa)
+     
       form.scrollIntoView({ behavior: "smooth", block: "center" });
     }
 
@@ -462,9 +462,9 @@
       songs.splice(index, 1);
       saveSongs();
       renderSongs(searchBar.value.toLowerCase());
-      // se estivermos editando essa música, cancelar edição
+     
       if (editingIndex === index) resetFormToAddMode();
-      // ajustar editingIndex se necessário (quando removemos itens antes do índice)
+      
       if (editingIndex > index) editingIndex -= 1;
     }
 
@@ -508,7 +508,7 @@
     // render inicial
     renderSongs();
 
-    // Caso queira disponibilizar uma função pública para testes no console:
+ 
     window._repertorio = {
       songs,
       renderSongs,
